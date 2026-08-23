@@ -1,0 +1,26 @@
+# Synthetic benchmark operating point (paper Figures 1-2).
+# Generate with simulate.py, then fit with run_cling.py.
+
+simulation:
+  n_samples: 300
+  view_dims: [1000, 1500, 2000]
+  n_factors: 10
+  noise_sigma: 0.75
+  sparsity: 0.60
+  seeds: 25            # analyses aggregate over 25 seeds
+
+cling:
+  k_init: 30           # fixed overcomplete truncation ceiling (K-infinity)
+  epsilon: 0.01        # per-view R^2 active-factor threshold
+  convergence_mode: slow   # dELBO = 5e-6
+  max_iter: 4000
+  init_mode: pca
+  # Sample-size-aware shrinkage is applied automatically by cling.fit:
+  # N < 1000 -> Gamma(3, 2.5); N >= 1000 -> Gamma(3, 1).
+
+# Sweeps varied one axis at a time from the baseline above:
+sweeps:
+  n_factors: [5, 15, 20, 25]
+  noise_sigma: [0.5, 0.6, 1.0, 1.5]
+  sparsity: [0.5, 0.65, 0.70, 0.80]
+  sample_size: [500, 1000, 2000, 4000]   # scalability sweep

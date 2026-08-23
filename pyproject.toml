@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cling"
+version = "1.0.0"
+description = "Cross-view Latent Integration via Nonparametric Gamma Shrinkage: Bayesian multi-view factor analysis for multi-omics integration"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Hassan Akell" },
+    { name = "Małgorzata Łazęcka" },
+    { name = "Dinesh Adhithya Haridoss" },
+    { name = "Miriam Urban" },
+    { name = "Eike Staub" },
+    { name = "Ewa Szczurek", email = "ewa.szczurek@helmholtz-munich.de" },
+]
+maintainers = [
+    { name = "Hassan Akell" },
+]
+keywords = [
+    "multi-omics",
+    "factor analysis",
+    "Bayesian",
+    "shrinkage priors",
+    "variational inference",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.9",
+    "tqdm>=4.0",
+]
+
+[project.optional-dependencies]
+tutorial = ["matplotlib>=3.5", "jupyter>=1.0", "nbclient>=0.7", "nbformat>=5.7"]
+testing = ["pytest>=7", "pytest-cov>=4"]
+reproducibility = ["pyyaml>=6", "pandas>=1.5", "matplotlib>=3.5"]
+dev = ["pytest>=7", "pytest-cov>=4", "ruff>=0.4", "mypy>=1.5"]
+
+[project.urls]
+Homepage = "https://github.com/szczurek-lab/CLING"
+Repository = "https://github.com/szczurek-lab/CLING"
+Issues = "https://github.com/szczurek-lab/CLING/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cling = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP"]
+# The codebase uses `from __future__ import annotations` with the legacy typing
+# aliases (List, Optional, Tuple); the modernisation rules are silenced so the
+# lint job does not require rewriting every annotation.
+ignore = [
+    "E501",
+    "UP006",
+    "UP007",
+    "UP035",
+    "UP045",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+
+[tool.mypy]
+python_version = "3.12"
+files = ["src/cling"]
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+disable_error_code = ["var-annotated"]

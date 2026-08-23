@@ -1,0 +1,22 @@
+name: cling-repro
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.9,<3.13
+  - numpy>=1.22
+  - scipy>=1.9
+  - tqdm>=4.0
+  - pandas>=1.5
+  - matplotlib>=3.5
+  - pyyaml>=6
+  - pip
+  - pip:
+      - -e ..
+# Baseline methods (MOFA, MuVI, MOJITOO, Multigrate, SOFA) are compared in the
+# paper but are not required to run CLING. They pin incompatible dependency
+# sets, so install each in its own environment from its upstream project:
+#   MOFA        mofapy2==0.7.2   https://github.com/bioFAM/mofapy2
+#   MuVI        muvi==0.1.5      https://github.com/MLO-lab/MuVI
+#   MOJITOO     (Python port)    https://github.com/CostaLab/MOJITOO
+#   Multigrate  multigrate==1.0.1 https://github.com/theislab/multigrate
+#   SOFA        (GBM only)       https://github.com/tcapraz/SOFA

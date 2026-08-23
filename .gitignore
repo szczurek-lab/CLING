@@ -1,0 +1,37 @@
+# Byte-compiled / build artefacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test / type / lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+*.swp
+
+# Data and generated results (never commit)
+/data/
+/results/
+*.npz
+*.h5ad
+*.csv
+*.tsv
