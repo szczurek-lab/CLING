@@ -1,0 +1,21 @@
+{
+  "upload_type": "software",
+  "title": "CLING: Cross-view Latent Integration via Nonparametric Gamma Shrinkage",
+  "description": "CLING is an unsupervised Bayesian multi-view factor model for integrating large, noisy, and heterogeneous multi-omics data, fit by closed-form mean-field variational inference with automatic factor selection. Software release accompanying the CLING paper.",
+  "license": "MIT",
+  "creators": [
+    { "name": "Akell, Hassan", "affiliation": "Helmholtz Munich" },
+    { "name": "Łazęcka, Małgorzata", "affiliation": "University of Warsaw" },
+    { "name": "Haridoss, Dinesh Adhithya", "affiliation": "Helmholtz Munich" },
+    { "name": "Urban, Miriam", "affiliation": "Merck Healthcare KGaA" },
+    { "name": "Staub, Eike", "affiliation": "Merck Healthcare KGaA" },
+    { "name": "Szczurek, Ewa", "affiliation": "Helmholtz Munich; University of Warsaw" }
+  ],
+  "keywords": [
+    "multi-omics integration",
+    "factor analysis",
+    "Bayesian",
+    "shrinkage priors",
+    "variational inference"
+  ]
+}

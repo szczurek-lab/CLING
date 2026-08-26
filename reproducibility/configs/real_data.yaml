@@ -1,0 +1,38 @@
+# CLING operating point for the real multi-omics datasets (paper Tables 1-3).
+# Shrinkage is set automatically by sample size unless overridden here.
+
+common:
+  k_init: 30          # fixed overcomplete truncation ceiling (K-infinity)
+  epsilon: 0.01       # per-view R^2 active-factor threshold
+  convergence_mode: slow
+  max_iter: 4000
+  init_mode: pca
+  seeds: 25           # representative fit = maximum-ELBO seed
+
+datasets:
+  evo_devo:
+    n_samples: 83
+    views: 5          # organs: brain, cerebellum, heart, liver, testis
+    features_per_view: 500
+    preprocessing: drop >20% missing; top-500 variable; per-feature median
+      impute (methods needing complete matrices); z-score per feature
+    shrinkage: gamma_3_2.5      # N < 1000
+
+  scnmt_seq:
+    n_samples: 1518
+    views: 3          # RNA, methylation, accessibility
+    features_per_view: 500
+    missingness: methylation ~67%, accessibility ~71% (mask, no imputation)
+    preprocessing: top-500 variable; z-score over observed cells
+    shrinkage: gamma_3_1        # N >= 1000
+
+  pbmc_multiome:
+    n_samples: 12012
+    views: 2          # RNA, ATAC
+    shrinkage: gamma_3_1        # N >= 1000
+
+  gbm:
+    n_samples: 278
+    views: 2          # gene expression, DNA methylation
+    features_per_view: 5000
+    shrinkage: gamma_3_2.5      # N < 1000
